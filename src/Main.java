@@ -123,7 +123,7 @@ class BinarySearchTree {
             // (2) Recursively traverse the left subtree (Left)
             traverseInOrder(node.left, result);
             // (3) Append the current node's word to the result (Root)
-            result.append(node.data);
+            result.append(node.data).append(" ");
             // (4) Recursively traverse the right subtree (Right)
             traverseInOrder(node.right, result);
         }
@@ -135,7 +135,7 @@ class BinarySearchTree {
         // (1) Check if the current node is not null before processing
         if (node != null) {
             // (2) Append the current node's word to the result (Root)
-            result.append(node.data);
+            result.append(node.data).append(" ");
             // (3) Recursively traverse the left subtree (Left)
             traversePreOrder(node.left, result);
             // (4) Recursively traverse the right subtree (Right)
@@ -153,7 +153,7 @@ class BinarySearchTree {
             // (3) Recursively traverse the right subtree (Right)
             traversePostOrder(node.right, result);
             // (4) Append the current node's word to the result (Root)
-            result.append(node.data);
+            result.append(node.data).append(" ");
         }
     }
 
