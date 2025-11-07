@@ -52,7 +52,7 @@ class BinarySearchTree {
     // Inserts a word into the Binary Search Tree (BST)
     public void insert(String word) {
         // (1) Calls the recursive function to insert the word, starting from the root node
-        insertRecursive(root, word);
+        root = insertRecursive(root, word);
     }
 
     // TODO #3
@@ -63,9 +63,11 @@ class BinarySearchTree {
         // (1) If the current node is null, insert a new node with the word
         if (node == null) {
             node = new TreeNode(word);
+            mostFrequentNode = node;
             // (2) Increase the unique word count
             uniqueWords++;
             // (3) Return the updated node
+
             return node;
         }
         // (4) If word is smaller, insert into left subtree
@@ -80,7 +82,7 @@ class BinarySearchTree {
         else {
             node.Occurences++;
             // (7) Update most frequent word tracking
-            if (mostFrequentNode.Occurences < node.Occurences) {
+            if (mostFrequentNode == null || mostFrequentNode.Occurences < node.Occurences) {
                 mostFrequentNode = node;
             }
         }
@@ -193,7 +195,7 @@ class BinarySearchTree {
         // (1) Retrieve the word stored in mostFrequentNode
         String word = mostFrequentNode.data;
         // (2) Append the frequency count in the format "word (X times)"
-        return word + "(" + mostFrequentNode.Occurences + "times)";
+        return word + "(" + mostFrequentNode.Occurences + " times)";
     }
 
     // TODO #12
