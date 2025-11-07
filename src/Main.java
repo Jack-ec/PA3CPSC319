@@ -71,11 +71,11 @@ class BinarySearchTree {
             return node;
         }
         // (4) If word is smaller, insert into left subtree
-        if (word.length() < node.data.length()) {
+        if (word.compareToIgnoreCase(node.data) < 0) {
             node.left = insertRecursive(node.left, word);
         }
         // (5) Else if word is larger, insert into right subtree
-        else if (word.length() > node.data.length()) {
+        else if (word.compareToIgnoreCase(node.data) > 0) {
             node.right = insertRecursive(node.right, word);
         }
         // (6) Else the word already exists, so increase its frequency
@@ -101,11 +101,11 @@ class BinarySearchTree {
                 traverseInOrder(root, sb);
         }
         // (4) If type is 2, perform pre-order traversal
-        if (type == 2) {
+        else if (type == 2) {
             traversePreOrder(root, sb);
         }
         // (5) If type is 3, perform post-order traversal
-        if (type == 3) {
+        else if (type == 3) {
             traversePostOrder(root, sb);
         }
         // (6) If input is invalid, return an error message
