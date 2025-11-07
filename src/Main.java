@@ -47,7 +47,7 @@ class BinarySearchTree {
     // (3) Count of unique words
     int uniqueWords;
     // (4) Stores the node with the highest frequency
-    TreeNode mostOccurences;
+    TreeNode mostFrequentNode;
 
     // Inserts a word into the Binary Search Tree (BST)
     public void insert(String word) {
@@ -80,8 +80,8 @@ class BinarySearchTree {
         else {
             node.Occurences++;
             // (7) Update most frequent word tracking
-            if (mostOccurences.Occurences < node.Occurences) {
-                mostOccurences = node;
+            if (mostFrequentNode.Occurences < node.Occurences) {
+                mostFrequentNode = node;
             }
         }
         // (8) Return the updated node
@@ -159,36 +159,48 @@ class BinarySearchTree {
     // Computes and returns the total number of words in the BST, including duplicates
     public int getTotalWords() {
         // (1) Reset the total word count to 0 before recalculating
+        totalWords = 0;
         // (2) Call the helper function to count word occurrences
+        countWords(root);
         // (3) Return the computed total number of words
+        return totalWords;
     }
 
     // TODO #9
     // Helper function to count words recursively in the BST
     private void countWords(TreeNode node) {
         // (1) Check if the current node is not null before processing
-        // (2) Add the frequency of the current node's word to the total count
-        // (3) Recursively traverse left subtree
-        // (4) Recursively traverse right subtree
+        if (node != null) {
+            // (2) Add the frequency of the current node's word to the total count
+            totalWords = totalWords + node.Occurences;
+            // (3) Recursively traverse left subtree
+            countWords(node.left);
+            // (4) Recursively traverse right subtree
+            countWords(node.right);
+        }
     }
 
     // TODO #10
     // Returns the count of unique words stored in the BST
     public int getUniqueWords() {
         // (1) Return the total number of unique words
+        return uniqueWords;
     }
 
     // TODO #11
     // Returns the most frequent word along with its occurrence count
     public String getMostFrequentWord() {
         // (1) Retrieve the word stored in mostFrequentNode
+        String word = mostFrequentNode.data;
         // (2) Append the frequency count in the format "word (X times)"
+        return word + "(" + mostFrequentNode.Occurences + "times)";
     }
 
     // TODO #12
     // Computes and returns the height of the BST
     public int getTreeHeight() {
         // (1) Calls the helper function getHeight() starting from the root
+        return getHeight(root);
     }
 
     // TODO #13
@@ -201,24 +213,44 @@ class BinarySearchTree {
         // - A tree with a single node has height 0.
 
         // (1) Base case: If the tree is empty (null node), return height -1.
+        if (node == null) {
+            return -1;
+        }
         // (2) Get the height of the left subtree.
+        int leftHeight = getHeight(node.left);
         // (3) Get the height of the right subtree.
+        int rightHeight = getHeight(node.right);
+
         // (4) Return the maximum height between left and right subtrees + 1.
+        return Math.max(leftHeight, rightHeight) + 1;
     }
 
     // TODO #14
     // Searches for a word in the BST and returns its frequency
     public int searchWord(String word) {
         // (1) Calls the recursive helper function, starting from the root
+        return searchWordRecursive(root, word);
     }
 
     // TODO #15
     // Helper function to recursively search for a word in the BST
     private int searchWordRecursive(TreeNode node, String word) {
         // (1) Base case: If node is null, the word is not in the BST
+        if (node == null) {
+            return 0;
+        }
         // (2) If word matches current node, return its frequency
+        if (word.equals(node.data)) {
+            return node.Occurences;
+        }
         // (3) If word is smaller, search left subtree
+        else if (word.compareTo(node.data) < 0) {
+            return searchWordRecursive(node.left, word);
+        }
         // (4) If word is larger, search right subtree
+        else {
+            return searchWordRecursive(node.right, word);
+        }
     }
 }
 
