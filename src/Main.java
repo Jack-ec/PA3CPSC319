@@ -63,11 +63,12 @@ class BinarySearchTree {
         // (1) If the current node is null, insert a new node with the word
         if (node == null) {
             node = new TreeNode(word);
-            mostFrequentNode = node;
+            if (mostFrequentNode == null) {
+                mostFrequentNode = node;
+            }
             // (2) Increase the unique word count
             uniqueWords++;
             // (3) Return the updated node
-
             return node;
         }
         // (4) If word is smaller, insert into left subtree
