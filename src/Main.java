@@ -3,11 +3,11 @@
 //
 // Student Information:
 //
-// ** Full Name: __________________________________________________
+// ** Full Name: Jack Chidlaw
 //
-// ** UCID: _________________________
+// ** UCID: 30187692
 //
-// ** Tutorial Section: __________________
+// ** Tutorial Section: B10
 //
 // ====================================================================
 
@@ -18,14 +18,22 @@ import java.util.*; // Import for utility classes like Scanner
 // Represents a node in the Binary Search Tree (BST)
 class TreeNode {
     // (1) The word stored in this node
+    String data;
     // (2) Count of occurrences of the word
+    int Occurences;
     // (3) Pointers to left and right children
+    TreeNode left;
+    TreeNode right;
 
     // Constructor initializes a new node with the given word
     public TreeNode(String word) {
         // (1) Assigns the input word to the node
+        this.data = word;
         // (2) New word starts with frequency of 1
+        this.Occurences = 1;
         // (3) Initially, no children
+        this.left = null;
+        this.right = null;
     }
 }
 
@@ -33,13 +41,18 @@ class TreeNode {
 // Binary Search Tree implementation for storing and analyzing words
 class BinarySearchTree {
     // (1) Root of the BST
+    TreeNode root;
     // (2) Total words inserted (including duplicates)
+    int totalWords;
     // (3) Count of unique words
+    int uniqueWords;
     // (4) Stores the node with the highest frequency
+    TreeNode mostOccurences;
 
     // Inserts a word into the Binary Search Tree (BST)
     public void insert(String word) {
         // (1) Calls the recursive function to insert the word, starting from the root node
+        insertRecursive(root, word);
     }
 
     // TODO #3
@@ -48,15 +61,30 @@ class BinarySearchTree {
         // **BST Property**: Smaller words go to the left subtree, larger words go to the right.
 
         // (1) If the current node is null, insert a new node with the word
-        // (2) Increase the unique word count
-        // (3) Return the updated node
-
+        if (node == null) {
+            node = new TreeNode(word);
+            // (2) Increase the unique word count
+            uniqueWords++;
+            // (3) Return the updated node
+            return node;
+        }
         // (4) If word is smaller, insert into left subtree
+         if (word.length() < node.data.length()) {
+             node.left = insertRecursive(node.left, word);
+         }
         // (5) Else if word is larger, insert into right subtree
+         else if (word.length() > node.data.length()) {
+             node.right = insertRecursive(node.right, word);
+         }
         // (6) Else the word already exists, so increase its frequency
-
+        else {
+            node.Occurences++;
         // (7) Update most frequent word tracking
+             if (mostOccurences.Occurences < node.Occurences) {
+                 mostOccurences = node;
+             }
         // (8) Return the updated node
+             return node;
     }
 
     // TODO #4
