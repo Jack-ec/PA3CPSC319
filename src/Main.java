@@ -69,42 +69,62 @@ class BinarySearchTree {
             return node;
         }
         // (4) If word is smaller, insert into left subtree
-         if (word.length() < node.data.length()) {
-             node.left = insertRecursive(node.left, word);
-         }
+        if (word.length() < node.data.length()) {
+            node.left = insertRecursive(node.left, word);
+        }
         // (5) Else if word is larger, insert into right subtree
-         else if (word.length() > node.data.length()) {
-             node.right = insertRecursive(node.right, word);
-         }
+        else if (word.length() > node.data.length()) {
+            node.right = insertRecursive(node.right, word);
+        }
         // (6) Else the word already exists, so increase its frequency
         else {
             node.Occurences++;
-        // (7) Update most frequent word tracking
-             if (mostOccurences.Occurences < node.Occurences) {
-                 mostOccurences = node;
-             }
+            // (7) Update most frequent word tracking
+            if (mostOccurences.Occurences < node.Occurences) {
+                mostOccurences = node;
+            }
+        }
         // (8) Return the updated node
-             return node;
+        return node;
     }
 
     // TODO #4
     // Returns the traversal output as a string based on the selected traversal type
     public String getTraversalOutput(int type) {
         // (1) Creates a StringBuilder to store the traversal result
+            StringBuilder sb = new StringBuilder();
         // (2) Checks the value of 'type' to determine which traversal to perform
         // (3) If type is 1, perform in-order traversal
+        if (type == 1) {
+                traverseInOrder(root, sb);
+        }
         // (4) If type is 2, perform pre-order traversal
+        if (type == 2) {
+            traversePreOrder(root, sb);
+        }
         // (5) If type is 3, perform post-order traversal
+        if (type == 3) {
+            traversePostOrder(root, sb);
+        }
         // (6) If input is invalid, return an error message
+        else {
+            System.err.println("Error: getTraversalOutput");
+        }
+        return sb.toString();
     }
 
     // TODO #5
     // Performs in-order traversal (Left, Root, Right)
     private void traverseInOrder(TreeNode node, StringBuilder result) {
         // (1) Check if the current node is not null before processing
-        // (2) Recursively traverse the left subtree (Left)
-        // (3) Append the current node's word to the result (Root)
-        // (4) Recursively traverse the right subtree (Right)
+        if (node != null) {
+            // (2) Recursively traverse the left subtree (Left)
+            traverseInOrder(node.left, result);
+            // (3) Append the current node's word to the result (Root)
+            result.append(node.data);
+            // (4) Recursively traverse the right subtree (Right)
+            traverseInOrder(node.right, result);
+        }
     }
 
     // TODO #6
