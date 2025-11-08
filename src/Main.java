@@ -192,7 +192,7 @@ public class Main {
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String line;
             while ((line = br.readLine()) != null) { // Read file line by line
-                // Jack Chidlaw Convert to lowercase, change punctuation into space chars as to not accidentally combine 2 words into one, and split into words
+                // Jack Chidlaw: Convert to lowercase, change punctuation into space chars as to not accidentally combine 2 words into one, and split into words
                 String[] words = line.toLowerCase().replaceAll("[^a-zA-Z ]", " ").split("\\s+");
                 for (String word : words) {
                     if (!word.isEmpty()) { // Ensure word is not empty
