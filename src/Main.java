@@ -7,7 +7,7 @@
 //
 // ** UCID: 30187692
 //
-// ** Tutorial Section: B10
+// ** Tutorial Section: T05
 //
 // ====================================================================
 //AI tools disclaimer: Generative AI tools from open AI were used to compare output when testing the different traversal types output
