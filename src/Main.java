@@ -10,7 +10,7 @@
 // ** Tutorial Section: B10
 //
 // ====================================================================
-//AI tools disclaimer: Generative ai tools from open ai were used to compare output when testing the different traversal types output
+//AI tools disclaimer: Generative AI tools from open AI were used to compare output when testing the different traversal types output
 // All code was written by hand with the help of research tools such as stack overflow, oracle manuals, GeeksforGeeks, etc.
 
 import java.io.*;  // Import for file handling
