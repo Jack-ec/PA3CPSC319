@@ -10,6 +10,8 @@
 // ** Tutorial Section: B10
 //
 // ====================================================================
+//AI tools disclaimer: Generative ai tools from open ai were used to compare output when testing the different traversal types output
+// All code was written by hand with the help of research tools such as stack overflow, oracle manuals, GeeksforGeeks, etc.
 
 import java.io.*;  // Import for file handling
 import java.util.*; // Import for utility classes like Scanner
@@ -84,7 +86,7 @@ class BinarySearchTree {
         }
         return sb.toString();
     }
-    // TRAVERSAL TYPES //////////////////////////////////////////////////////////////////////////
+    // TRAVERSAL TYPES ==============================================================================
 
     // Performs in-order traversal (Left, Root, Right)
     private void traverseInOrder(TreeNode node, StringBuilder result) {
@@ -113,7 +115,7 @@ class BinarySearchTree {
         }
     }
 
-    // /////////////////////////////////////////////////////////////////////////////////////////////////
+    // ===========================================================================================================
 
     // Computes and returns the total number of words in the BST, including duplicates
     public int getTotalWords() {
