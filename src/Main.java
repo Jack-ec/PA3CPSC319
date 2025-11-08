@@ -192,8 +192,9 @@ public class Main {
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String line;
             while ((line = br.readLine()) != null) { // Read file line by line
-                // Jack Chidlaw: Convert to lowercase, change punctuation into space chars as to not accidentally combine 2 words into one, and split into words
-                String[] words = line.toLowerCase().replaceAll("[^a-zA-Z ]", " ").split("\\s+");
+                // Jack Chidlaw: Convert to lowercase, remove punctuation, and split into words
+                // Drawback to removing punctuation is that parts like call?--Good in exampl03.txt get merged into one word
+                String[] words = line.toLowerCase().replaceAll("[^a-zA-Z ]", "").split("\\s+");
                 for (String word : words) {
                     if (!word.isEmpty()) { // Ensure word is not empty
                         bst.insert(word); // Insert word into BST
@@ -220,7 +221,18 @@ public class Main {
                 System.out.println("Choose BST traversal method: 1 = IN-ORDER, 2 = PRE-ORDER, 3 = POST-ORDER");
                 String choice = scanner.nextLine();
                 try {
+                    String outputType;
                     int traversalType = Integer.parseInt(choice);
+                    if (traversalType == 1) {
+                        outputType = "IN-ORDER output: ";
+                        System.out.println(outputType);
+                    } else if (traversalType == 2) {
+                        outputType = "PRE-ORDER output: ";
+                        System.out.println(outputType);
+                    } else if (traversalType == 3) {
+                        outputType = "POST-ORDER output: ";
+                        System.out.println(outputType);
+                    }
                     System.out.println(bst.getTraversalOutput(traversalType));
                 } catch (NumberFormatException e) {
                     System.out.println("Invalid input. Please enter 1, 2, or 3.");
